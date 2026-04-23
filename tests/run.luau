@@ -14,5 +14,8 @@ require("./flatten/Bezier.spec")
 require("./flatten/Arc.spec")
 require("./flatten/Path.spec")
 require("./flatten/Stroke.spec")
+require("./raster/Canvas.spec")
+require("./raster/Scanline.spec")
+require("./raster/Raster.spec")
 
 return t.run()
