@@ -1,4 +1,8 @@
 --!strict
--- Lune test entrypoint. Add tests here as modules grow.
+-- Lune test entrypoint. Add new `require` lines as modules grow.
 
-print("Glyph test suite — no tests yet")
+local t = require("./framework")
+
+require("./parser/Xml.spec")
+
+return t.run()
