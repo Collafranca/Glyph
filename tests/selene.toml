@@ -1,0 +1,3 @@
+# Tests run under Lune, not Roblox. Use Lune's selene std here.
+# See: https://github.com/lune-org/lune/blob/main/docs/tooling/selene.md
+std = "lune"

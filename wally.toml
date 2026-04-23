@@ -1,0 +1,32 @@
+[package]
+name = "collafranca/glyph"
+version = "0.1.0"
+registry = "https://github.com/UpliftGames/wally-index"
+realm = "shared"
+description = "Render SVGs at runtime in Roblox. Zero dependencies, pure Luau."
+license = "MIT"
+authors = ["Collafranca"]
+include = [
+	"src/**",
+	"default.project.json",
+	"wally.toml",
+	"LICENSE",
+	"README.md",
+]
+exclude = [
+	"tests/**",
+	"docs/**",
+	".github/**",
+	"Packages/**",
+	"DevPackages/**",
+	"build/**",
+	"sourcemap.json",
+	"*.rbxl",
+	"*.rbxlx",
+	"*.rbxm",
+	"*.rbxmx",
+]
+
+[dependencies]
+
+[dev-dependencies]
