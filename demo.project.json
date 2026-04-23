@@ -18,8 +18,11 @@
 			"$className": "StarterPlayer",
 			"StarterPlayerScripts": {
 				"$className": "StarterPlayerScripts",
-				"Demo": {
+				"BasicDemo": {
 					"$path": "examples/Demo.client.luau"
+				},
+				"LucideDemo": {
+					"$path": "examples/LucideDemo"
 				}
 			}
 		},
