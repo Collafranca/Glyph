@@ -1,0 +1,34 @@
+{
+	"name": "GlyphDemo",
+	"tree": {
+		"$className": "DataModel",
+		"Workspace": {
+			"$className": "Workspace",
+			"$properties": {
+				"FilteringEnabled": true
+			}
+		},
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+			"Glyph": {
+				"$path": "src"
+			}
+		},
+		"StarterPlayer": {
+			"$className": "StarterPlayer",
+			"StarterPlayerScripts": {
+				"$className": "StarterPlayerScripts",
+				"Demo": {
+					"$path": "examples/Demo.client.luau"
+				}
+			}
+		},
+		"Lighting": {
+			"$className": "Lighting",
+			"$properties": {
+				"Ambient": [0.1, 0.1, 0.12],
+				"OutdoorAmbient": [0.1, 0.1, 0.12]
+			}
+		}
+	}
+}
