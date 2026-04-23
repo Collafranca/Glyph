@@ -108,9 +108,10 @@ local function lineColumn(cur: Cursor, position: number): (number, number)
 	return line, position - lineStart + 1
 end
 
-local function fail(cur: Cursor, position: number, message: string): never
+local function fail(cur: Cursor, position: number, message: string): any
 	local line, column = lineColumn(cur, position)
 	error(string.format("XML parse error at line %d, column %d: %s", line, column, message), 0)
+	return nil -- unreachable; Luau flow analysis requires this return
 end
 
 local function skipWhitespace(cur: Cursor)
@@ -352,12 +353,14 @@ local function parseMarkup(cur: Cursor): (XmlElement?, string?)
 			-- CDATA is not valid at the root between elements; callers that support
 			-- it (text content of an element) consume it inline, so bail.
 			fail(cur, cur.pos, "unexpected CDATA outside element content")
+			return nil, nil
 		elseif startsWith(cur, "<!DOCTYPE") then
 			cur.pos += 9
 			skipDoctype(cur)
 			return nil, nil
 		else
 			fail(cur, cur.pos, "unknown '<!' construct")
+			return nil, nil
 		end
 	elseif next1 == CHAR_QUESTION then
 		cur.pos += 2

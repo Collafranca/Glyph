@@ -1,5 +1,8 @@
 # Rojo
 sourcemap.json
+
+# Generated Roblox type definitions (fetched by setup script / CI)
+globalTypes.d.luau
 *.rbxl
 *.rbxlx
 *.rbxm
