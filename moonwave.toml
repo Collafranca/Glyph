@@ -1,0 +1,55 @@
+title = "Glyph"
+gitRepoUrl = "https://github.com/Collafranca/Glyph"
+gitSourceBranch = "main"
+changelog = true
+
+[home]
+enabled = true
+includeReadme = true
+
+[[home.features]]
+title = "Pure Luau"
+description = "Zero dependencies. No external libraries, no web round-trips. Ships as a single module."
+
+[[home.features]]
+title = "Full SVG 1.1 subset"
+description = "Paths, transforms, gradients, stroke joins/caps/dashes, clip paths, fill rules — the 80% of SVG that matters."
+
+[[home.features]]
+title = "EditableImage native"
+description = "Renders directly into Roblox's EditableImage API. Works in ImageLabels, Decals, Textures, and SurfaceGuis."
+
+[docusaurus]
+onBrokenLinks = "warn"
+onBrokenMarkdownLinks = "warn"
+tagline = "Render SVGs at runtime in Roblox."
+
+[navbar]
+title = "Glyph"
+
+[[navbar.items]]
+href = "https://github.com/Collafranca/Glyph"
+label = "GitHub"
+position = "right"
+
+[footer]
+style = "dark"
+copyright = "Copyright © 2026 Collafranca. Built with Moonwave and Docusaurus."
+
+[[footer.links]]
+title = "Docs"
+
+[[footer.links.items]]
+label = "Getting Started"
+to = "/docs/intro"
+
+[[footer.links.items]]
+label = "API"
+to = "/api/Glyph"
+
+[[footer.links]]
+title = "More"
+
+[[footer.links.items]]
+label = "GitHub"
+href = "https://github.com/Collafranca/Glyph"

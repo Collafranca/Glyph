@@ -1,0 +1,43 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Publish release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rokit
+        uses: CompeyDev/setup-rokit@v0.1.2
+
+      - name: Build .rbxm
+        run: |
+          mkdir -p build
+          rojo build default.project.json -o build/Glyph.rbxm
+
+      - name: Publish to Wally
+        env:
+          WALLY_TOKEN: ${{ secrets.WALLY_TOKEN }}
+        run: |
+          if [ -z "$WALLY_TOKEN" ]; then
+            echo "WALLY_TOKEN is not set; skipping Wally publish"
+            exit 0
+          fi
+          mkdir -p ~/.wally
+          echo "[tokens]" > ~/.wally/auth.toml
+          echo '"https://api.wally.run/" = "'"$WALLY_TOKEN"'"' >> ~/.wally/auth.toml
+          wally publish
+
+      - name: Attach artifact to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/Glyph.rbxm
+          generate_release_notes: true

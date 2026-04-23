@@ -22,6 +22,7 @@ wally.lock
 /docs/.docusaurus/
 /docs/node_modules/
 /docs/build/
+/docs-build/
 
 # Editor
 .vscode/*

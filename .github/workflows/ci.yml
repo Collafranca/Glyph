@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-and-test:
+    name: Lint, format, type-check, test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rokit
+        uses: CompeyDev/setup-rokit@v0.1.2
+
+      - name: Fetch Roblox type definitions
+        run: |
+          curl -sL -o globalTypes.d.luau \
+            https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/main/scripts/globalTypes.d.luau
+
+      - name: Format check (StyLua)
+        run: stylua --check src tests
+
+      - name: Lint (selene)
+        run: |
+          selene src
+          selene tests
+
+      - name: Generate sourcemap
+        run: rojo sourcemap default.project.json -o sourcemap.json
+
+      - name: Type-check (luau-lsp)
+        run: |
+          luau-lsp analyze \
+            --sourcemap=sourcemap.json \
+            --base-luaurc=.luaurc \
+            --definitions=globalTypes.d.luau \
+            src
+
+      - name: Run tests (Lune)
+        run: lune run tests/run.luau
+
+      - name: Build .rbxm
+        run: |
+          mkdir -p build
+          rojo build default.project.json -o build/Glyph.rbxm
+
+      - name: Upload .rbxm artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Glyph-rbxm
+          path: build/Glyph.rbxm
+          retention-days: 14
